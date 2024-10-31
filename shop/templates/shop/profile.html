@@ -1,0 +1,12 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <h1>Profile</h1>
+    <h2>Hi {{ user.first_name }} {{ user.last_name }}</h2>
+    {% if user.first_name %}
+        <a href="{% url 'shop:logout' %}">logout</a>
+    {% else %}
+        <a href="{% url 'shop:login' %}">login</a> | <a href="{% url 'shop:register' %}">Create account</a>
+    {% endif %}
+{% endblock %}

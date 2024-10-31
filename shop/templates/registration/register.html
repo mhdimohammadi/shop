@@ -1,0 +1,11 @@
+{% extends 'parent/base.html' %}
+{% block title %}rgister{% endblock %}
+{% block content %}
+    <h1>Sing up</h1>
+    <p>Please enter your information:</p><br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Sign up">
+    </form>
+{% endblock %}

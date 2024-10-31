@@ -1,0 +1,53 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+    <h2>{{ product.name }}</h2>
+    {% for img in product.images.all %}
+        <img src="{{ img.file.url }}" alt="Not found" style="width: fit-content" height="150px">
+    {% endfor %}
+    <br>
+    Category : {{ product.category }}
+    <br>
+    Description : {{ product.description }}
+    <br>
+    Inventory : {{ product.inventory }}
+    <br>
+    Price:
+    <del>{{ product.price }}</del> | {{ product.off }} OFF
+    <br>
+    New price : {{ product.new_price }}
+    <br>
+    Weight : {{ product.weight }}
+    <br>
+    <button type="button" id="add-cart">
+        Add to cart
+    </button>
+    <hr>
+    Similar Products
+    <br>
+    {% for product in similar_products %}
+        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+        <img src="{{ product.images.first.file.url }}" alt="Not found" style="width: fit-content" height="150px">
+        <br>
+
+    {% endfor %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            $('#add-cart').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url 'cart:add_to_cart' product.id %}',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    success: function (data) {
+                        $('#item-count').text(data.item_count)
+                        $('#total-price').text(data.total_price)
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

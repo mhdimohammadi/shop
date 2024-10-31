@@ -1,0 +1,9 @@
+<h2>Verification code</h2>
+{% for message in messages %}
+    {{ message }}
+{% endfor %}
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="code" aria-label="Verification code">
+    <button type="submit">Verify</button>
+</form>

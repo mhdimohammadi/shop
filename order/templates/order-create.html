@@ -1,0 +1,18 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}Create order{% endblock %}
+{% block content %}
+    <ul>
+        {% for item in cart %}
+            <li>
+                {{ item.quantity }} x {{ item.product.name }}
+                {{ item.total }}
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Order</button>
+    </form>
+{% endblock %}

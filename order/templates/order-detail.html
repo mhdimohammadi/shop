@@ -1,0 +1,18 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}Order detail{% endblock %}
+{% block content %}
+    {% for item in order.items.all %}
+        Name: {{ item.product.name }}
+        <br>
+        Quantity: {{ item.quantity }}
+        <br>
+        Price: {{ item.price }}
+        <br>
+        Weight: {{ item.weight }}
+        <hr>
+    {% endfor %}
+    Date of order: {{ order.created }}
+    <br>
+    Address: {{ order.address }}
+{% endblock %}

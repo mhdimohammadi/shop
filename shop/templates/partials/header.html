@@ -1,0 +1,6 @@
+<a href="{% url 'cart:cart_detail' %}">cart</a>
+<br>
+item count : <span id="item-count">{{ cart|length }}</span>
+<br>
+total price : <span id="total-price">{{ cart.total_price }}</span>
+<hr style="color: blue">

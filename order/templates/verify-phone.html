@@ -1,0 +1,9 @@
+<h2>Phone verification</h2>
+{% for message in messages %}
+    {{ message }}
+{% endfor %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Verify</button>
+</form>

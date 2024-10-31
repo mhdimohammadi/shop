@@ -1,0 +1,7 @@
+{% extends 'parent/base.html' %}
+{% block title %}rgister{% endblock %}
+{% block content %}
+    <h2>{{ user }}</h2>
+    <p>You created account successfully</p>
+    <a href="{% url 'shop:login' %}">Login</a>
+{% endblock %}
